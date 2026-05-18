@@ -1,0 +1,12 @@
+image:
+  repository: image-registry.openshift-image-registry.svc:5000/my-project/etl-dynamic-orhestration
+  tag: demo
+
+instances:
+  - name: etl-alpha
+    dbType: mysql 
+  - name: etl-bravo
+    dbType: oracle
+  - name: etl-charlie
+    dbType: postgres
+    
