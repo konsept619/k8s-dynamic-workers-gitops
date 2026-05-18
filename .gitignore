@@ -1,0 +1,82 @@
+# ==========================================
+# 1. PYTHON (Application Layer)
+# ==========================================
+# Byte-compiled and cache files
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Virtual environments (local dev)
+.venv/
+venv/
+ENV/
+env/
+build/
+dist/
+*.egg-info/
+
+# ==========================================
+# 2. KUBERNETES & HELM (Infrastructure Layer)
+# ==========================================
+# Helm dependencies (downloaded sub-charts)
+charts/*.tgz
+/charts/
+Chart.lock
+
+# Values files containing local secrets and overrides
+*secrets.yaml
+*.secret.yaml
+local-values.yaml
+values-local.yaml
+
+# Generated manifest files (e.g., output of 'helm template')
+*generated*.yaml
+debug-manifests.yaml
+.helm/
+
+# Local K8s configuration files (e.g., copied kubeconfig)
+kubeconfig
+*kubeconfig*
+.skaffold/
+
+# Secret encryption (files decrypted via Mozilla SOPS)
+*.decrypted.yaml
+.sops.yaml.local
+
+# ==========================================
+# 3. CONTAINERS & CONFIGURATION (Docker/Env)
+# ==========================================
+# Environment variable files (DB_TYPE, passwords, etc.)
+.env
+.env.local
+.env.*.local
+
+# Container and application logs
+*.log
+
+# ==========================================
+# 4. SYSTEM & IDE (Developer Junk)
+# ==========================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+
+# Windows
+Desktop.ini
+
+# VS Code
+.vscode/
+!.vscode/extensions.json
+
+# PyCharm / IntelliJ
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
