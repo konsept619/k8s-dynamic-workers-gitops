@@ -1,1 +1,2 @@
-print('You are running an ORACLE query!')
+def run_query():
+    print("You are running an ORACLE query!")

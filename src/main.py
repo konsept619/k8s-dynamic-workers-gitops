@@ -6,7 +6,7 @@ def main():
     etl_db_type = os.environ.get("DB_TYPE", "postgres").lower()
     
     try:
-        query_module = importlib.import_module(f"src.queries.{etl_db_type}")
+        query_module = importlib.import_module(f"queries.{etl_db_type}")
         query_module.run_query()
         
     except ModuleNotFoundError:
