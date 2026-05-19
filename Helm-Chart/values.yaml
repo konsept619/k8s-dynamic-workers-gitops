@@ -1,6 +1,8 @@
 image:
   repository: image-registry.openshift-image-registry.svc:5000/my-project/etl-dynamic-orhestration
   tag: demo
+  pullPolicy: Always
+  pullSecret: repository-auth-secret
 
 instances:
   - name: etl-alpha
