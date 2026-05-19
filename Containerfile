@@ -4,7 +4,7 @@ USER 0
 
 WORKDIR /app
 
-COPY src/* /app/
+COPY src/ /app/
 
 ENV PYTHONUNBUFFERED=1
 
