@@ -1,0 +1,34 @@
+{{- range .Values.instances }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $.Chart.Name }}-{{ .name }}
+  labels:
+    app: etl
+    instance: {{ .name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      instance: {{ .name }}
+  template:
+    metadata:
+      labels:
+        instance: {{ .name }}
+    spec:
+      containers:
+      - name: etl-process
+        image: "{{ $.Values.image.repository }}:{{ $.Values.image.tag }}"
+        envFrom:
+        - configMapRef:
+            name: {{ $.Chart.Name }}-{{ .name }}-config
+        - secretRef:
+            name: {{ $.Chart.Name }}-{{ .name }}-secrets
+        volumeMounts:
+        - name: temp-data
+          mountPath: /app/data
+      volumes:
+      - name: temp-data
+        emptyDir: {}
+{{- end }}

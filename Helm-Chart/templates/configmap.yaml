@@ -1,0 +1,14 @@
+{{- range .Values.instances }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ $.Chart.Name }}-{{ .name }}-config
+data:
+  LOGLEVEL: {{ .logLevel | default "INFO" | quote }}
+  DB_TYPE: {{ .dbType | quote }}
+  DBUSER: {{ .dbUser | quote }}
+  BKTNAME: {{ .bktName | quote }}
+  HTTP_PROXY_MOCK: "127.0.0.1"
+  HTTPS_PROXY_MOCK: "10.11.12.13"
+{{- end }}
