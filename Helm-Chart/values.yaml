@@ -1,6 +1,6 @@
 image:
   repository: etl-dynamic-workers-app
-  tag: "4c83bbb"
+  tag: "a709cb0"
   pullPolicy: Always
 
 instances:
