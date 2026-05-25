@@ -1,21 +1,21 @@
-{{- range .Values.instances }}
+{{- range $name, $config := .Values.workers }}
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ $.Chart.Name }}-{{ .name }}
+  name: {{ $.Chart.Name }}-{{ $name }}
   labels:
     app: etl
-    instance: {{ .name }}
+    instance: {{ $name }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      instance: {{ .name }}
+      instance: {{ $name }}
   template:
     metadata:
       labels:
-        instance: {{ .name }}
+        instance: {{ $name }}
     spec:
       {{- if $.Values.image.pullSecret }}
       imagePullSecrets:
@@ -23,14 +23,14 @@ spec:
       {{- end }}
       containers:
       - name: etl-process
-        image: "{{ $config.repository }}:{{ $config.tag }}"
+        image: "{{ $.Values.global.registry }}/{{ $config.repository }}:{{ $config.tag }}"
         imagePullPolicy: {{ $.Values.image.pullPolicy | default "Always" }}
         env:
           - name: WORKER_TYPE
             value: "{{ $config.dbType | upper }}"
         envFrom:
         - configMapRef:
-            name: {{ $.Chart.Name }}-{{ .name }}-config
+            name: {{ $.Chart.Name }}-{{ $name }}-config
         volumeMounts:
         - name: temp-data
           mountPath: /app/data
