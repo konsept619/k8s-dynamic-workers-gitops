@@ -23,8 +23,11 @@ spec:
       {{- end }}
       containers:
       - name: etl-process
-        image: "{{ $.Values.image.repository }}:{{ $.Values.image.tag }}"
+        image: "{{ $config.repository }}:{{ $config.tag }}"
         imagePullPolicy: {{ $.Values.image.pullPolicy | default "Always" }}
+        env:
+          - name: WORKER_TYPE
+            value: "{{ $config.dbType | upper }}"
         envFrom:
         - configMapRef:
             name: {{ $.Chart.Name }}-{{ .name }}-config
