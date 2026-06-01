@@ -1,14 +1,17 @@
-{{- range .Values.instances }}
+{{- range $name, $config := .Values.workers }}
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ $.Chart.Name }}-{{ .name }}-config
+  name: {{ $.Chart.Name }}-{{ $name }}-config
+  labels:
+    app: etl
+    instance: {{ $name }}
 data:
-  LOGLEVEL: {{ .logLevel | default "INFO" | quote }}
-  DB_TYPE: {{ .dbType | quote }}
-  DBUSER: {{ .dbUser | quote }}
-  BKTNAME: {{ .bktName | quote }}
+  LOGLEVEL: {{ $config.logLevel | default "INFO" | quote }}
+  DB_TYPE: {{ $config.dbType | quote }}
+  DBUSER: {{ $config.dbUser | quote }}
+  BKTNAME: {{ $config.bktName | quote }}
   HTTP_PROXY_MOCK: "127.0.0.1"
   HTTPS_PROXY_MOCK: "10.11.12.13"
 {{- end }}
