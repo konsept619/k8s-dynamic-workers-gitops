@@ -9,15 +9,15 @@ workers:
   
   etl-bravo:
     repository: "etl-core-app"
-    tag: "e47d71c"
+    tag: "3408df9"
     dbType: "oracle" 
   
   etl-charlie:
     repository: "etl-core-app"
-    tag: "e47d71c"
+    tag: "3408df9"
     dbType: "postgres"
   
   etl-delta:
     repository: "etl-core-app"
-    tag: "e47d71c"
+    tag: "3408df9"
     dbType: "postgres"
