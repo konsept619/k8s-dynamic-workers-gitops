@@ -16,6 +16,8 @@ spec:
     metadata:
       labels:
         instance: {{ $name }}
+      annotations:
+        checksum/config: {{ include (print $.Template.WorkingDirectory "/templates/configmap.yaml") $ | sha256sum }}
     spec:
       {{- if $.Values.image.pullSecret }}
       imagePullSecrets:
