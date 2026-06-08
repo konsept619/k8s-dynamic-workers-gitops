@@ -17,7 +17,7 @@ spec:
       labels:
         instance: {{ $name }}
       annotations:
-        checksum/config: {{ include (print $.Template.Name "/../configmap.yaml") $ | sha256sum }}
+        checksum/config: {{ toJson $config | sha256sum }}
     spec:
       {{- if $.Values.image.pullSecret }}
       imagePullSecrets:
