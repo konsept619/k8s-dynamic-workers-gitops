@@ -6,18 +6,22 @@ workers:
     repository: "etl-core-app"
     tag: "latest"
     dbType: "mysql"   
+    bktName: "MOCK-BUCKET-from-mysql"
   
   etl-bravo:
     repository: "etl-core-app"
     tag: "3408df9"
     dbType: "oracle" 
+    bktName: "MOCK-BUCKET-from-oracle"
   
   etl-charlie:
     repository: "etl-core-app"
     tag: "08286bb"
     dbType: "postgres"
+    bktName: "MOCK-BUCKET-from-postgres"
   
   etl-delta:
     repository: "etl-core-app"
     tag: "3408df9"
     dbType: "postgres"
+    bktName: "MOCK-BUCKET-from-postgres"
