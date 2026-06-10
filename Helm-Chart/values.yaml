@@ -18,10 +18,10 @@ workers:
     repository: "etl-core-app"
     tag: "08286bb"
     dbType: "postgres"
-    bktName: "MOCK-BUCKET-from-postgres"
+    bktName: "MOCK-BUCKET-from-postgres-1"
   
   etl-delta:
     repository: "etl-core-app"
     tag: "3408df9"
     dbType: "postgres"
-    bktName: "MOCK-BUCKET-from-postgres"
+    bktName: "MOCK-BUCKET-from-postgres-2"
