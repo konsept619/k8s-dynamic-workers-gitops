@@ -11,7 +11,6 @@ data:
   LOGLEVEL: {{ $config.logLevel | default "INFO" | quote }}
   DB_TYPE: {{ $config.dbType | quote }}
   DBUSER: {{ $config.dbUser | quote }}
-  BKTNAME: {{ $config.bktName | quote }}
   HTTP_PROXY_MOCK: "127.0.0.1"
   HTTPS_PROXY_MOCK: "11.12.13.14"
 {{- end }}

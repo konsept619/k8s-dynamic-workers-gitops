@@ -18,6 +18,13 @@ spec:
         instance: {{ $name }}
       annotations:
         checksum/config: {{ toJson $config | sha256sum }}
+        {{- if $config.secretEnv }}
+        {{- $secretList := list }}
+        {{- range $envName, $secretMapping := $config.secretEnv }}
+          {{- $secretList = append $secretList $secretMapping.secretName }}
+        {{- end }}
+        secret.reloader.stakater.com/reload: {{ $secretList | uniq | join "," | quote }}
+        {{- end }}
     spec:
       {{- if $.Values.image.pullSecret }}
       imagePullSecrets:
@@ -30,6 +37,17 @@ spec:
         env:
           - name: WORKER_TYPE
             value: "{{ $config.dbType | upper }}"
+
+          {{- if $conifg.secretEnv }}
+          {{- range $envName, $secretMapping := $config.secretEnv }}
+          - name: {{ $envName }}
+            valueFrom:
+              secretKeyRef:
+               name: {{ $secretMapping.secretName }}
+               key: {{ $secretMapping.secretKeyRef }}
+          {{- end }}
+          {{- end }}
+        
         envFrom:
         - configMapRef:
             name: {{ $.Chart.Name }}-{{ $name }}-config
