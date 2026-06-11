@@ -43,8 +43,8 @@ spec:
           - name: {{ $envName }}
             valueFrom:
               secretKeyRef:
-               name: {{ $secretMapping.secretName }}
-               key: {{ $secretMapping.secretKeyRef }}
+                name: {{ $secretMapping.secretName }}
+                key: {{ $secretMapping.secretKey }}
           {{- end }}
           {{- end }}
         
